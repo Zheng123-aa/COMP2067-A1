@@ -1,0 +1,15 @@
+open classical
+constant A : Type
+constants PP QQ : A → Prop
+
+theorem dm_pred : (∀ x : A, (¬ PP x ∧ ¬ QQ x)) → ¬ (∃ x : A, (PP x ∨ QQ x)) :=
+begin
+  assume h,                -- Assuming the given conditions
+  assume h_exists,          -- Suppose there exists an x that satisfies either PP or QQ
+  cases h_exists with x h_or,    -- Break the existential quantifier down into specific x's
+  have h_x := h x,               -- Apply the global premise to this x
+  cases h_x with h_not_p h_not_q, -- X neither satisfies PP nor satisfies QQ
+  cases h_or with h_p h_q,        -- Conduct a classified discussion on the hypothetical situation
+  { contradiction, },            -- If PP is satisfied, it contradicts the premise
+  { contradiction, },            -- If it satisfies QQ, it contradicts the premise
+end
