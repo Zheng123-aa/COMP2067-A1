@@ -1,0 +1,8 @@
+-- For the two cases of boolean values tt and ff, the double negation is proved to be valid through classification discussion.
+lemma ex7q03 : ∀ x : bool, x = bnot (bnot x) :=
+begin
+  assume x,      -- Suppose x is any boolean value
+  cases x,       -- Case-by-case analysis: x = ff or x = tt
+  reflexivity,   -- Situation 1: x = ff, and the equation holds true.
+  reflexivity,   -- Situation 2: x = tt, and the equation holds true.
+end
